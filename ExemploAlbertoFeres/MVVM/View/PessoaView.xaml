@@ -3,17 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ExemploAlbertoFeres.MVVM.View.PessoaView">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Margin="10">
             <Entry 
                 Text="{Binding Nome}"
                 Placeholder="Digite o nome" />
             <Entry 
                 Text="{Binding Telefone}"
                 Placeholder="Digite o telefone" />
+            <Button Text="Foto" Clicked="EscolherFoto" />
+
+            <Image x:Name="ImageSelected" IsVisible="False" HeightRequest="50" />
+
             <Button Text="Adicionar"
                 Command="{Binding SalvarPessoaCommand}" />
             <ListView 
-                ItemsSource="{Binding Pessoas}">
+                ItemsSource="{Binding Pessoas}"
+                SelectedItem="{Binding SelectedPessoa}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <TextCell Text="{Binding Nome}"

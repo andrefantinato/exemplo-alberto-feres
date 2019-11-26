@@ -26,5 +26,10 @@ namespace ExemploAlbertoFeres.MVVM.Model
         {
             return _database.InsertAsync(pessoa);
         }
+
+        public Task<int> DeletePessoaAsync(Pessoa pessoa)
+        {
+            return _database.DeleteAsync(pessoa);
+        }
     }
 }

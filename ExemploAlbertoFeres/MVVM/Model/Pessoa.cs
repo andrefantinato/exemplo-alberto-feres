@@ -11,6 +11,6 @@ namespace ExemploAlbertoFeres.MVVM.Model
         public int Id { get; set; }
         public string Nome { get; set; }
         public string Telefone { get; set; }
-        //public string ImageBase64 { get; set; }
+        public string ImageBase64 { get; set; }
     }
 }

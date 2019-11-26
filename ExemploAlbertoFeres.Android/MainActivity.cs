@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Plugin.Media;
 
 namespace ExemploAlbertoFeres.Droid
 {
@@ -18,6 +19,9 @@ namespace ExemploAlbertoFeres.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
+
+            CrossMedia.Current.Initialize();
+
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
             //LoadApplication(new AppMVC());
