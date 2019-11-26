@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ExemploAlbertoFeres.MVVM.View.PessoaView">
+    <ContentPage.Content>
+        <StackLayout>
+            <Entry 
+                Text="{Binding Nome}"
+                Placeholder="Digite o nome" />
+            <Entry 
+                Text="{Binding Telefone}"
+                Placeholder="Digite o telefone" />
+            <Button Text="Adicionar"
+                Command="{Binding SalvarPessoaCommand}" />
+            <ListView 
+                ItemsSource="{Binding Pessoas}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Nome}"
+                              Detail="{Binding Telefone}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
