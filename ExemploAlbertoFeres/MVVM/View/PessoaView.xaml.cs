@@ -30,6 +30,8 @@ namespace ExemploAlbertoFeres.MVVM.View
         private async void EscolherFoto(object sender, EventArgs e)
         {
             MediaFile file;
+            string _filePath;
+            await CrossMedia.Current.Initialize();
 
             var result = await DisplayActionSheet("Enviar", "Cancelar", "", "Câmera", "Biblioteca");
             if (result == null)
@@ -37,7 +39,7 @@ namespace ExemploAlbertoFeres.MVVM.View
 
             if (result.Equals("Câmera"))
             {
-                await CrossMedia.Current.Initialize();
+                
 
                 if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
                 {
@@ -45,21 +47,30 @@ namespace ExemploAlbertoFeres.MVVM.View
                     return;
                 }
 
-                file = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
+                file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
                 {
                     SaveToAlbum = true,
+                    Directory = "Demo",
                     PhotoSize = Plugin.Media.Abstractions.PhotoSize.Small
                 });
+
+                //file = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
+                //{
+                //    SaveToAlbum = true,
+                //    PhotoSize = Plugin.Media.Abstractions.PhotoSize.Small
+                //});
 
                 if (file == null)
                     return;
 
-                ImageSelected.Source = ImageSource.FromStream(() =>
-                {
-                    var stream = file.GetStream();
-                    return stream;
-                });
-                ImageSelected.IsVisible = true;
+                _filePath = file.Path;
+
+                //ImageSelected.Source = ImageSource.FromStream(() =>
+                //{
+                //    var stream = file.GetStream();
+                //    return stream;
+                //});
+                //ImageSelected.IsVisible = true;
 
 
                 byte[] data = ReadFully(file.GetStream());
