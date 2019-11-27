@@ -21,7 +21,8 @@ namespace ExemploAlbertoFeres.MVC.View_Controller
 
         async void OnButtonClicked(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(nomeEntry.Text) && !string.IsNullOrWhiteSpace(telefoneEntry.Text))
+            if (!string.IsNullOrWhiteSpace(nomeEntry.Text) 
+                && !string.IsNullOrWhiteSpace(telefoneEntry.Text))
             {
                 await db.SavePessoaAsync(new Pessoa
                 {

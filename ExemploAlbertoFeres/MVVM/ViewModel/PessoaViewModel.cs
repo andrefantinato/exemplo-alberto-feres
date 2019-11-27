@@ -85,7 +85,9 @@ namespace ExemploAlbertoFeres.MVVM.ViewModel
 
         public PessoaViewModel()
         {
-            this.db = new Database(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "pessoas.db3"));
+            this.db = new Database(Path.Combine(Environment.GetFolderPath(
+                Environment.SpecialFolder.LocalApplicationData), "pessoas.db3"));
+
             this.Pessoas = new ObservableCollection<Pessoa>();
             this.SalvarPessoaCommand = new Command(this.SalvarPessoa);
             this.ShowPessoaCommand = new Command(this.ShowPessoa);
@@ -130,19 +132,17 @@ namespace ExemploAlbertoFeres.MVVM.ViewModel
 
         public override async Task LoadAsync()
         {
-            var pessoas = await this.db.GetPessoaAsync();
-
-            Pessoas.Clear();
+            var pessoas = await this.db.GetPessoaAsync(); 
             if (pessoas == null || pessoas.Count == 0)
             {
                 await DisplayAlert("Ops!", "Nenhum resultado encontrado.", "Ok");
                 return;
             }
 
+            Pessoas.Clear();
+
             foreach (var p in pessoas)
-            {
                 Pessoas.Add(p);
-            }
         }
 
     }
