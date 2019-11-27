@@ -4,18 +4,25 @@
              x:Class="ExemploAlbertoFeres.MVVM.View.PessoaView">
     <ContentPage.Content>
         <StackLayout Margin="10">
+            
             <Entry 
                 Text="{Binding Nome}"
                 Placeholder="Digite o nome" />
+            
             <Entry 
                 Text="{Binding Telefone}"
                 Placeholder="Digite o telefone" />
+            
             <Button Text="Foto" Clicked="EscolherFoto" />
 
-            <Image x:Name="ImageSelected" IsVisible="False" HeightRequest="50" />
+            <Image x:Name="ImageSelected" 
+                   IsVisible="False" 
+                   HeightRequest="50" />
 
-            <Button Text="Adicionar"
+            <Button 
+                Text="Adicionar"
                 Command="{Binding SalvarPessoaCommand}" />
+            
             <ListView 
                 ItemsSource="{Binding Pessoas}"
                 SelectedItem="{Binding SelectedPessoa}">

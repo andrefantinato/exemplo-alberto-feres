@@ -48,7 +48,7 @@ namespace ExemploAlbertoFeres.MVVM.View
                 file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
                 {
                     SaveToAlbum = true,
-                    PhotoSize = Plugin.Media.Abstractions.PhotoSize.Small
+                    PhotoSize = PhotoSize.Small
                 });
 
                 if (file == null)
