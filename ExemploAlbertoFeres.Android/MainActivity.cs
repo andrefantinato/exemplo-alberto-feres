@@ -24,6 +24,7 @@ namespace ExemploAlbertoFeres.Droid
             CrossMedia.Current.Initialize();
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
+            Plugin.CurrentActivity.CrossCurrentActivity.Current.Init(this, bundle);
 
             //LoadApplication(new AppMVC());
             LoadApplication(new AppMVVM());

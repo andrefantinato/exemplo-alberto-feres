@@ -39,8 +39,6 @@ namespace ExemploAlbertoFeres.MVVM.View
 
             if (result.Equals("Câmera"))
             {
-                
-
                 if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
                 {
                     await DisplayAlert("No Camera", ":( No camera avaialble.", "OK");
@@ -50,27 +48,20 @@ namespace ExemploAlbertoFeres.MVVM.View
                 file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
                 {
                     SaveToAlbum = true,
-                    Directory = "Demo",
                     PhotoSize = Plugin.Media.Abstractions.PhotoSize.Small
                 });
-
-                //file = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
-                //{
-                //    SaveToAlbum = true,
-                //    PhotoSize = Plugin.Media.Abstractions.PhotoSize.Small
-                //});
 
                 if (file == null)
                     return;
 
                 _filePath = file.Path;
 
-                //ImageSelected.Source = ImageSource.FromStream(() =>
-                //{
-                //    var stream = file.GetStream();
-                //    return stream;
-                //});
-                //ImageSelected.IsVisible = true;
+                ImageSelected.Source = ImageSource.FromStream(() =>
+                {
+                    var stream = file.GetStream();
+                    return stream;
+                });
+                ImageSelected.IsVisible = true;
 
 
                 byte[] data = ReadFully(file.GetStream());
